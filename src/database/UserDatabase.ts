@@ -1,5 +1,5 @@
 
-import { IUsersDB } from "../types";
+import { IUsersDB } from "../interfaces";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class UserDatabase extends BaseDatabase{
@@ -8,4 +8,5 @@ export class UserDatabase extends BaseDatabase{
       const usersDB: IUsersDB[] = await BaseDatabase.connection(UserDatabase.TABLE_USERS)
       return usersDB
     }
+    
 }

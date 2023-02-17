@@ -1,10 +1,19 @@
-// import {CoursesController} from "../controller/CoursesController";
 
-// export const coursesRouter = express.Router();
+import express from "express";
+import { PostsBusiness } from '../business/PostBusiness';
+import { Postcontroller } from '../controller/PostController';
+import { PostDatabase } from '../database/PostsDatabase';
 
-// const coursesController = new CoursesController()
 
-// coursesRouter.get("/", coursesController.getCourses)
-// coursesRouter.post("/",coursesController.postCourse )
-// coursesRouter.put("/:id", coursesController.editCourse)
-// coursesRouter.delete("/:id",coursesController.deleteCourse
+
+export const postsRouter = express.Router()
+
+const postController = new Postcontroller(
+    new PostsBusiness(
+        new PostDatabase(),
+    )
+       )
+postsRouter.get("/", postController.getPosts)
+postsRouter.post("/", postController.createPost)
+postsRouter.put("/:id", postController.updatePost)
+postsRouter.delete("/:id", postController.deletePost)
