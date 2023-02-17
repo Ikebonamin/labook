@@ -7,7 +7,7 @@ export class Users {
     private email: string,
     private password:string,
     private role: string,
-    private createdAt:string
+    private createdAt:string 
 
 
   ){}
@@ -26,7 +26,7 @@ export class Users {
   public getrole(): string{
     return this.role
   }
-  public created(): string{
+  public created(): string | null{
     return this.createdAt
   }
   public setId(value:string): void{
