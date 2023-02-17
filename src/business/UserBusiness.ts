@@ -1,12 +1,14 @@
 import { UserDatabase} from '../database/UserDatabase';
 import { Users } from '../Models/Users';
 import { IUsersDB } from '../interfaces';
+import { IdGenerator } from '../services/IdGenerator';
 
 
 
 export class UserBusiness{
     constructor(
-        private userDatabase: UserDatabase
+        private userDatabase: UserDatabase,
+        private idGenerator:IdGenerator
     ){}
     public getUsers = async ()=>{
         const usersDB:IUsersDB[]= await this.userDatabase.findUsers();
@@ -21,4 +23,22 @@ export class UserBusiness{
         return users
       
     }
-}
+
+    public createUser  = async (input: string) => {
+        const {name:string, email, password, role, createdAt}  = input
+        
+        // validações de regra de negócio//
+        
+const id = this.idGenerator.generate()
+console.log("gerador de ID user Business", id);
+
+
+const newUser = new Users(
+    id,
+    name,
+    email,
+    password,
+    role,
+    createdAt
+)
+}}
